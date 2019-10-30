@@ -1,0 +1,20 @@
+function[result] = subplot_this(speech, range1a, rang1b,range2b,range3a, range3b)
+subplot(3,1,1);
+x = (1:15000);
+y1 = speech(range1a:range1b);
+plot(x,y1)
+title('Subplot 1');
+
+subplot(3,1,2);
+x = (1:3001);
+y2 = speech(22000:25000);
+plot(x,y2);
+title('Subplot 2');
+
+subplot(3,1,3);
+x = (1:7001);
+y3 = speech(28000:35000);
+plot(x,y3);
+title('Subplot 3');
+result = speech;
+
