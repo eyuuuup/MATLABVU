@@ -8,5 +8,5 @@ string = sprintf(format,time);
 fprintf(string);
 recordblocking(rec, time);      %acquire sound for the given duration
 speech = getaudiodata(rec);     %stores the audio samples into an array
-plot(speech);
+plot(speech);                   %plot the graph using the data in speech
 result = speech;                %returns the speech

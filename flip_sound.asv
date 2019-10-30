@@ -1,0 +1,12 @@
+function[] = flip_sound()
+%this function takes a waveform and gives a time scale
+%with the sampling frequency fs, and samples array speech
+
+rec = audiorecorder(2000,16,1)
+recordblocking (rec, 5);
+play(rec)
+undersampled = getaudiodata (rec);
+sound(undersampled, 4000);
+
+flipped = flipud(undersampled);
+sound(flipped, 4000);
