@@ -27,20 +27,16 @@ function[results] = giveNumberMSER()
         end
         
         im = imread(fileStr);
-        
-        hold on
-        imshow(im);
-        roi = round(getPosition(imrect));
-        close;
-        hold off;
-        
+                      
         I = rgb2gray(im);
         level = graythresh(I);
         I = imbinarize(I, level);
         I = imopen(I, strel('disk', 1));
         I = imcomplement(I);
+   
         imshow(I);
-       
+        roi = round(getPosition(imrect));
+        close;
         
         ocrResults = ocr(I, roi, 'CharacterSet', '0123456789', 'TextLayout', formatStr);
         results = [results; ocrResults.Words];
