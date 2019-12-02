@@ -8,11 +8,12 @@ function[results] = giveNumberMSER()
         if strcmp(videoStr, 'Y')
             vid = videoinput ('winvideo' , 1);
             start(vid);
+            disp('Snapping picture...');
             im = getsnapshot(vid);
             stop(vid);
             delete(vid);
             fileStr = input('File name of new picture (%%%.bmp) : ', 's');
-            imwrite(im,'fileStr','bmp');
+            imwrite(im,fileStr,'bmp');
 
         else
             fileStr = input('File name of to be scanned picture: ', 's');
