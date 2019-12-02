@@ -1,0 +1,42 @@
+function[results] = giveNumberMSER()
+    
+    results = [];
+    
+    while(true)
+        
+        videoStr = input(
+        fileStr = input('File name of to be scanned picture: ', 's');
+        formatStr = input('Is the picture formatted neatly? Y/N: ', 's');
+        if strcmp(formatStr, 'Y')
+            formatStr = 'auto';
+        else
+            formatStr = 'word';
+        end
+        
+        im = imread(fileStr);
+        
+        hold on
+        imshow(im);
+        roi = round(getPosition(imrect));
+        close;
+        hold off;
+        
+        I = rgb2gray(im);
+        level = graythresh(I);
+        I = imbinarize(I, level);
+        I = imopen(I, strel('disk', 1));
+        I = imcomplement(I);
+        imshow(I);
+       
+        
+        ocrResults = ocr(I, roi, 'CharacterSet', '0123456789', 'TextLayout', formatStr);
+        results = [results; ocrResults.Words];
+        continueStr = input('Scan more numbers? Y/N: ', 's');
+      
+        if strcmp(continueStr, 'N')
+            break;
+        end
+        
+    end
+  
+end
