@@ -5,11 +5,13 @@ function[results] = giveNumberMSER()
     while(true)
         
         videoStr = input('Take a new snapshot of picture? Y/N: ', 's');
+        
         if strcmp(videoStr, 'Y')
-            vid = videoinput ('winvideo' , 1);
+            
+            vid = videoinput ('winvideo' , 1); %specify video input
             start(vid);
             disp('Snapping picture...');
-            im = getsnapshot(vid);
+            im = getsnapshot(vid); %get video input
             stop(vid);
             delete(vid);
             fileStr = input('File name of new picture (%%%.bmp) : ', 's');
